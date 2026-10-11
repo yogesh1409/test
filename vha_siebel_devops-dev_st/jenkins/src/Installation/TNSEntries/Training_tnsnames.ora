@@ -1,9 +1,0 @@
-SEBL_TRG01 =
-  (DESCRIPTION =
-    (ADDRESS = (PROTOCOL = TCP)(HOST = vvsl60222)(PORT = 2521))
-      (CONNECT_DATA =
-            (SERVER = DEDICATED)
-         (SERVICE_NAME = sebl_tr1_sblapp.vodafone.com.au)
-  )
-)
-
