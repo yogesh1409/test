@@ -1,0 +1,8 @@
+SEBL_SIT09 
+  (DESCRIPTION = 
+     (ADDRESS = (PROTOCOL = TCP)(HOST = vvsl60219.vodafone.com.au)(PORT = 2521))
+     (CONNECT_DATA = 
+        (SERVER = DEDICATED)
+        (SERVICE_NAME = sebl_sit09_sblapp.vodafone.com.au)
+  )
+)

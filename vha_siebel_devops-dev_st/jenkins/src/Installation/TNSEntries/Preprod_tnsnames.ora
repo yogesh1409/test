@@ -1,0 +1,8 @@
+SEBL_PPD =
+(DESCRIPTION =
+   (ADDRESS = (PROTOCOL = TCP)(HOST = vvsl60223)(PORT = 2521))
+     (CONNECT_DATA =
+           (SERVER = DEDICATED)
+       (SERVICE_NAME = sebl_ppd_sblapp.vodafone.com.au)
+  )
+)

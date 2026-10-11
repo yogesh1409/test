@@ -1,0 +1,8 @@
+SEBL_DEV3 =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = siebel-sit9-sebldb)(PORT = 2521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = SEBL_DEV3.vodafone.com.au)
+    )
+  )

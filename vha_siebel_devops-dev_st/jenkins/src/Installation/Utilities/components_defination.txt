@@ -1,0 +1,447 @@
+; Author: Vijayaraj Murugesan
+; Date : 26-Sep-2019
+; Siebel Upgrade IP19.x Component creation script.
+; Execution steps : read prod_comp_creation.cmd at enterprise
+
+;Siebel IP19 Production custom component group creation
+create component group VHACare full name 'VHA Care' description 'VHA Care Component Group'
+create component group VHARetail full name 'VHA Retail' description 'VHA Retail Component Group'
+create component group VHAAdmin full name 'VHA Admin' description 'VHA Admin Component Group'
+create component group VFAsynch full name "VF Asynch Processing" 
+create component group VFBatchProcGrp full name "VF Batch Processing Group" 
+create component group VFOrders full name "VF Orders"
+create component group VFDeltaSynchAccount full name 'VF Delta Synch Account' description 'VF Delta Synch Account'
+create component group VFSynchAccntAU full name "VF Synch Account AU"
+create component group VFBulkChgProp full name 'VF Bulk Change Proposition' description 'VF Bulk Change Proposition'
+create component group VFBulkCon full name 'VF Bulk Connection' description 'VF Bulk Connection'
+create component group VFBulkPortIn full name 'VF Bulk Port In' description 'VF Bulk Port In'
+create component group VFBulkInitiatorGrp full name 'VF Bulk Initiator' description 'VF Bulk Initiator'
+create component group VFDeltaSynchSub full name "VF Synch Subscription"
+create component group VFCreditCheckGrp full name 'VF Credit Check' description 'VF Credit Check'
+create component group VFDeltaSynchSubPostpay full name "VF Synch Subscription - Postpay"
+create component group VFGenPDF full name "VF Generate PDF"
+
+;SIT env Comp Assignment
+assign component group VHACare to server SBLSRVR01
+assign component group VHARetail to server SBLSRVR01
+assign component group VHAAdmin to server SBLSRVR01
+assign component group EAI to server SBLSRVR01
+assign component group CommMgmt to server SBLSRVR01
+assign component group VFAsynch to server SBLSRVR01
+assign component group VFSynchAccntAU to server SBLSRVR01
+assign component group VFBulkChgProp to server SBLSRVR01
+assign component group VFGenPDF to server SBLSRVR01
+assign component group VFBulkPortIn to server SBLSRVR01
+assign component group VFBulkCon to server SBLSRVR01
+assign component group VFBatchProcGrp to server SBLSRVR01
+assign component group VFDeltaSynchAccount to server SBLSRVR01
+assign component group VFAdmin to server SBLSRVR01
+assign component group VFBulkInitiatorGrp to server SBLSRVR01
+assign component group VFDeltaSynchSub to server SBLSRVR01
+assign component group VFCreditCheckGrp to server SBLSRVR01
+assign component group VFDeltaSynchSubPostpay to server SBLSRVR01
+assign component group VFOrders to server SBLSRVR01
+assign component group TaskUI to server SBLSRVR01
+
+
+;Custom component creation 
+create component definition eComObjMgrCare for component type AppObjMgr component group VHACare run mode Interactive full name "eCommunications for Wireless Object Manager Care (ENU)" description "Siebel Care Object Manager - Australia"
+create component definition eComObjMgrRetail for component type AppObjMgr component group VHARetail run mode Interactive full name "eCommunications for Wireless Object Manager Retail (ENU)" description "Siebel Retail Object Manager - Australia"
+create component definition eComObjMgrAdmin for component type AppObjMgr component group VHAAdmin run mode Interactive full name "eCommunications for Wireless Object Manager Admin (ENU)" description "Siebel Admin Object Manager - Australia"
+create component definition VFBulkProvWF for component type 'Workflow Process Manager' component group VFAsynch run mode Batch full name 'VF Bulk Provisioning Workflow' description 'VF Bulk Provisioning Workflow'
+create component definition VFBulkProductWF for component type 'Workflow Process Manager' component group VFAsynch run mode Batch full name 'VF Bulk Product Workflow' description 'VF Bulk Product Workflow'
+create component definition VFBulkWF for component type 'Workflow Process Manager' component group VFAsynch run mode Batch full name 'VF Bulk Workflows' description 'VF Bulk Workflows'
+create component definition VFAccountProcess for component type 'Workflow Process Manager' component group VFAsynch run mode Batch full name 'VF CaT Offer Removal' description 'VF CaT Offer Removal'
+create component definition VFCVP for component type 'Workflow Process Manager' component group VFAsynch run mode Batch full name 'VF CVP Extraction' description 'VF CVP Extraction'
+create component definition VFLiveConn for component type 'Workflow Process Manager' component group VFAsynch run mode Batch full name 'VF Live Connection' description 'VF Live Connection'
+create component definition VFSMSWorkflow for component type 'Workflow Process Manager' component group VFAsynch run mode Batch full name 'VF SMS Workflow' description 'VF SMS Workflow'
+create component definition VFBatchProc for component type 'Workflow Process Manager' component group VFBatchProcGrp run mode Batch full name 'VF Batch Processing' description 'VF Batch Processing'
+create component definition VFOrders for component type 'Workflow Process Manager' component group VFOrders run mode Batch full name 'VF Orders' description 'VF Orders'
+create component definition VFSynchAccnt for component type 'Workflow Process Manager' component group VFDeltaSynchAccount run mode Batch full name 'VF Synch Account' description 'VF Synch Account'
+create component definition VFSynchAccntAU for component type 'Workflow Process Manager' component group VFSynchAccntAU run mode Batch full name 'VF Synch Account AU' description 'VF Synch Account AU'
+create component definition VFSynchAccntBulkAU for component type 'Workflow Process Manager' component group VFSynchAccntAU run mode Batch full name 'VF Synch Account AU - Bulk' description 'VF Synch Account AU - Bulk'
+create component definition VFBulkChgProp for component type 'Workflow Process Manager' component group VFBulkChgProp run mode Batch full name 'VF Bulk Change Proposition' description 'VF Bulk Change Proposition'
+create component definition VFBulkCon for component type 'Workflow Process Manager' component group VFBulkCon run mode Batch full name 'VF Bulk Connection' description 'VF Bulk Connection'
+create component definition VFBulkPort for component type 'Workflow Process Manager' component group VFBulkPortIn run mode Batch full name 'VF Bulk Port In' description 'VF Bulk Port In'
+create component definition VFBulkInitiation for component type 'Workflow Process Manager' component group VFBulkInitiatorGrp run mode Batch full name 'VF Bulk Initiation' description 'VF Bulk Initiation'
+create component definition VFSynchSub for component type 'Workflow Process Manager' component group VFDeltaSynchSub run mode Batch full name 'VF Synch Subscription' description 'VF Synch Subscription'
+create component definition VFCreditCheck for component type 'Workflow Process Manager' component group VFCreditCheckGrp run mode Batch full name 'VF Credit Check' description 'VF Credit Check'
+create component definition VFSynchSubPostpay for component type 'Workflow Process Manager' component group VFDeltaSynchSubPostpay run mode Batch full name 'VF Synch Subscription - Postpay' description 'VF Synch Subscription - Postpay'
+create component definition VFGenPDF for component type 'Workflow Process Manager' component group VFGenPDF run mode Batch full name 'VF Generate PDF' description 'VF Generate PDF'
+
+;Custom component creation activate
+activate component definition eComObjMgrCare
+activate component definition eComObjMgrRetail
+activate component definition eComObjMgrAdmin
+activate component definition VFBulkProvWF
+activate component definition VFBulkProductWF
+activate component definition VFBulkWF
+activate component definition VFAccountProcess
+activate component definition VFCVP
+activate component definition VFLiveConn
+activate component definition VFSMSWorkflow
+activate component definition VFBatchProc
+activate component definition VFOrders
+activate component definition VFSynchAccnt
+activate component definition VFSynchAccntAU
+activate component definition VFSynchAccntBulkAU
+activate component definition VFBulkChgProp
+activate component definition VFBulkCon
+activate component definition VFBulkPort
+activate component definition VFBulkInitiation
+activate component definition VFSynchSub
+activate component definition VFCreditCheck
+activate component definition VFSynchSubPostpay
+activate component definition VFGenPDF
+
+
+;Namedsubsystem creation
+create named subsystem VFBarUnbarSubscription for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='BarUnbarSubscription', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFCreateOnlineOrderSR for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFCreateOnlineOrderSR', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFCreateUpdateOnlineOrderSR for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFCreateUpdateOnlineOrderSR', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFCreateUpdateSRFields for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFCreateUpdateSRFields', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFCreditCheckResponse for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFCreditCheckResponse', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFDisconnectService for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='CreateDisconnectOrder', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFDishonourNotification for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFDishonourNotification', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFFirstCall for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='FirstCallRequest', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFGetIMSIForMSISDN for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='GetIMSIForMSISDN', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFGetOrderDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFGetOrderDetails', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFGetUpgradeEligibilityDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFGetUpgradeEligibilityDetails', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFMNPCreateTNR for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='MNPCreateTNR', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFMNPInitPortInComplete for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='MNPInitiatePortInComplete', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFMNPPortInRejOrCon for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='MNPPortInRejOrCon', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFMNPRequestConnect for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='MNPRequestConnect', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFMNPRequestDisconnect for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='MNPRequestDisconnect', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFMNPValidatePortOut for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='MNPValidatePortOut', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFMPPGetCreditCheckDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFMPPGetCreditCheckDetails', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFProductSynch for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='ProductSynch', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFReceiveNER for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='ReceiveNER', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFRetrieveAccountDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='RetrieveAccount', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFRetrieveSubscriptionDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='RetrieveSubscription', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSAAPTPortStatus for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSAAPTPortStatus', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSAccountStatusAndSIMDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSAccountStatusAndSIMDetails', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSAccountStatusDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSAccountStatusDetails', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSAllocateIMEI for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSAllocateIMEI', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSAllocateMSISDN for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSAllocateMSISDN', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSAuthenticateSalesRep for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSAuthenticateSalesRep', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSCancelSelfServiceOrder for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSCancelSelfServiceOrder', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSChangeGlobalRoaming for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSChangeGlobalRoaming', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSChangeOptionQuery for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSChangeOptionQuery', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSChangeOptionUpdate for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSChangeOptionUpdate', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSCreateBillingAccBillingPro for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSCreateBillingAccBillingPro', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSCreateBillingAccBilPro for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSCreateBillingAccBilPro', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSCreateChangeOrder for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSCreateChangeOrder', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSCreateFulfilmentOrder for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSCreateFulfilmentOrder', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSCreateOrder for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSCreateOrder', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSCreateProductConfiguration for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSCreateProductConfiguration', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSCreateTNR for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSCreateTNR', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSCreateUpdCustAccFinPro for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSCreateUpdCustAccFinPro', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSCreateUpdCustomerAccFinPro for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSCreateUpdCustomerAccFinPro', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSEBPNotification for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSEBPNotification', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetAccountContact for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetAccountContact', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetAccountContactMultiAddr for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetAccountContactMultiAddr', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetAcntHierarchy for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetAcntHierarchy', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetAddresses for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetAddresses', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetAdjustmentHistory for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetAdjustmentHistory', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetAvailableProducts for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetAvailableProducts', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetAvailNumbers for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetAvailNumbers', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetBalAndEnt for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetBalAndEnt', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetBillAccounts for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetBillAccounts', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetBillProfile for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetBillProfile', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetCollectionDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetCollectionDetails', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetComplexProductInfo for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetCxProduct', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetConnections for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetConnections', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetCreditLimit for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetCreditLimit', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetCUGMember for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetCUGMember', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetInvoiceHeader for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetInvoiceHeader', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetOnlineAsset for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetOnlineAsset', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetOnlineBA for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetOnlineBA', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetOnlineCA for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetOnlineCA', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetOrderHeaderInfo for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetOrderHeaders', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetPaymentHistory for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetPaymentHistory', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetPendingOrdersFlag for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetPendingOrdersFlag', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetPlans for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetPlans', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetSharingDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetSharingDetails', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetSIMDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetSIMDetails', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetTrackingDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetTrackingDetails', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetUpgradeHatCatDrivers for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetUpgradeHatCatDrivers', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetUsageHistory for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetUsageHistory', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSPerformAdjustment for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSPerformAdjustment', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSQuerySRDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSQuerySRDetails', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSRetrieveCalculatedCharges for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSRetrieveCalculatedCharges', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSRetrieveCurrentConfig for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSRetrieveCurrentConfiguration', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSRetrieveFeesAndCharges for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSRetrieveFeesAndCharges', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSRetrieveProductOptions for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSRetrieveProductOptions', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSRetrieveProductOptionsFast for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSRetrieveProductOptionsFast', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSSetSIMDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSSetSIMDetails', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSSetSIMDetails-ReturnIMSI for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSSetSIMDetails-ReturnIMSI', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSSubmitCreditCheck for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSSubmitCreditCheck', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSSubmitCreditCheckOLS for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSSubmitCreditCheckOLS', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSSubmitProductConfiguration for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSSubmitProductConfiguration', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSSubmitShippingRequest for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSSubmitShippingRequest', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSUpdateAccountContact for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSUpdateAccountContact', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSUpdateAutoPaymentAU for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSUpdateAutoPaymentAU', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSUpdateBillPresent for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSUpdateBillPresent', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSUpdateCreditLimit for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSUpdateCreditLimit', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSUpdateCUGMember for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSUpdCUGMember', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSUpdateCxProductOrder for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSUpdCxProdOrder', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSUpdCUGUserName for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSUpdCUGUserName', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSValidateAccount for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSValidateAccount', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSValidateIMEI for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSValidateIMEI', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSValidatePINs for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSValidatePINs', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSurveyGetContact for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='SurveyGetContact', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSurveyUpdateContact for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='SurveyUpdateContact', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSyncAccountCollectionStatus for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSyncAccountCollectionStatus', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSyncCreditLimit for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSyncCreditLimit', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFTravellerRequest for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFTravellerRequest', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFUpdateAccount for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='UpdateAccount', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFUpdateAssetStatus for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='UpdateAssetStatus', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFUpdateeDocumentUpload for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='UpdateUploadStatus', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFUpdateOrder for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='UpdateOrder', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFWebApplyPayment for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='WebApplyPayment', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFWebChangeNetworkSettings for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='WebChangeNetworkSettings', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFWebCreateActivity for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='WebCreateActivity', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFWebCutoverRegister for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='WebCutoverRegister', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFWebGetBalance for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='WebGetBalance', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFWebGetContact for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='WebGetContact', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFWebGetContactHistory for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='WebGetContactHistory', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFWebGetNetworkSettings for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='WebGetNetworkSettings', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFWebGetPUK for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='WebGetPUK', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFWebGetSettingsHistory for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='WebGetSettingsHistory', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFWebRegister for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='WebRegister', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFWebRegMSISDNQuery for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='WebRegMSISDNQuery', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem JAVA for subsystem JVMSubsys
+create named subsystem VFSSUpdateSiebelSalesInfo for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSUpdateSiebelSalesInfo', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHASSUpsertLoginInfo for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHASSUpsertLoginInfo', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHACreateUpdFraudAddress for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHACreateUpdFraudAddress', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHAUpsertThrottlePassInSBL for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHAUpsertThrottlePassInSBL', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHANBNNotifyAppointment for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHANBNNotifyAppointment', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSIDBlacklistValidation for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSIDBlacklistValidation', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSPortInValidation for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSPortInValidation', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHASSNBNCreateAddressSQ for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHASSNBNCreateAddressSQ', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSCreateOnlineSIMSwap for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSCreateOnlineSIMSwap', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHANBNNotifyTT for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHANBNNotifyTT', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHAUpdateEOLStatus for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHAUpdateEOLStatus', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHARetrieveEOLStatus for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHARetrieveEOLStatus', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHANBNNotifyOrder for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHANBNNotifyOrder', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetUSIMOffersRewards for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetUSIMOffersRewards', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHAUpdateAssetSS for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHAUpdateAssetSS', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHAUpsertBarringDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHAUpsertBarringDetails', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSSetUNISIMDetails for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSSetUNISIMDetails', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHANBNOrderFeasibilityResponse for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHANBNOrderFeasibilityResponse', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFSSGetUSIMOnlineCA for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFSSGetUSIMOnlineCA', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHANBNNotifyInventory for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHANBNNotifyInventory', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHAValidatePINSS for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHAValidatePINSS', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHAUAMInterface for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHAUAMInterface', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHAUpdateIMEI for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VHAUpdateIMEI', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFMNP for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='MNPPortInRejOrCon', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFMNPPortInRejCon for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFMNPPortInRejCon', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VFPCITokenRequest for subsystem EAITransportDataHandlingSubsys with Dispatchmethod='VFPCITokenRequest', DispatchService='VF Inbound Subsystem Processing'
+create named subsystem VHAArchivalEBC for subsystem InfraDatasources
+
+;Disable not required vanilla compgroup 
+disable component group FieldSvc
+disable component group MktgSrv
+disable component group PIMSI
+disable component group HTIM
+disable component group Fins
+disable component group ADM
+disable component group RTSRemote
+disable component group AsgnMgmt
+disable component group DataQual
+disable component group Sales
+disable component group HandheldSyncSIS
+disable component group eDocuments
+disable component group IComp
+disable component group SAP
+disable component group ContCtr
+disable component group DandB
+disable component group ORCL
+disable component group XMLPReport
+disable component group Hospitality
+disable component group SISME
+disable component group RTI
+disable component group eConsumer
+disable component group eAutomotive
+disable component group S2S
+disable component group Search
+disable component group SalesHierSvc
+disable component group CreditAsgn
+disable component group PublicSector
+disable component group LoyaltyEngine
+disable component group HandheldSync
+disable component group UCM
+disable component group SiebAnywhere
+disable component group LifeSciences
+disable component group DCommerce
+disable component group VFSynchAccntNZ
+disable component group ERM
+disable component group MktgOM
+disable component group CRA
+disable component group FcstSvc
+disable component group Loyalty
+
+;Disable not required vanilla component 
+deactivate compdef ADMBatchProc
+deactivate compdef ADMObjMgr_enu
+deactivate compdef ADMProc
+deactivate compdef ApptBook
+deactivate compdef AsgnSrvr
+deactivate compdef AsgnBatch
+deactivate compdef BatchSync
+deactivate compdef BusIntBatchMgr
+deactivate compdef BusIntMgr
+deactivate compdef CommConfigMgr
+deactivate compdef CommInboundProcessor
+deactivate compdef CommInboundRcvr
+deactivate compdef CommSessionMgr
+deactivate compdef ContProjPub
+deactivate compdef ContProjStart
+deactivate compdef CRAObjMgr_enu
+deactivate compdef CustomAppObjMgr_enu
+deactivate compdef DNBUpMgrDNB
+deactivate compdef DNBUpMgrMultiTask
+deactivate compdef DNBUpMgrSieb
+deactivate compdef DQMgr
+deactivate compdef DbXtract
+deactivate compdef DCommerceAlerts
+deactivate compdef DCommerceAutoClose
+deactivate compdef DocServer
+deactivate compdef DynamicCommerce
+deactivate compdef InfraEAIOutbound
+deactivate compdef eAutoBusRuleExecSvc
+deactivate compdef eautoObjMgr_enu
+deactivate compdef CGMObjMgr_enu
+deactivate compdef eChannelCGObjMgr_enu
+deactivate compdef eChannelObjMgr_enu
+deactivate compdef eClinicalObjMgr_enu
+deactivate compdef eConsumerObjMgr_enu
+deactivate compdef eConsumerPharmaObjMgr_enu
+deactivate compdef eConsumerSectorObjMgr_enu
+deactivate compdef eCustomerObjMgr_enu
+deactivate compdef eCustomerCMEObjMgr_enu
+deactivate compdef edealerObjMgr_enu
+deactivate compdef edealerscwObjMgr_enu
+deactivate compdef eEnergyObjMgr_enu
+deactivate compdef eEventsObjMgr_enu
+deactivate compdef eHospitalityObjMgr_enu
+deactivate compdef LoyEngineBatch
+deactivate compdef LoyEngineInteractive
+deactivate compdef LoyEngineRealtime
+deactivate compdef MailMgr
+deactivate compdef eMarketObjMgr_enu
+deactivate compdef eMediaObjMgr_enu
+deactivate compdef eMedicalObjMgr_enu
+deactivate compdef ERMAdminObjMgr_enu
+deactivate compdef ERMEmbObjMgr_enu
+deactivate compdef ERMObjMgr_enu
+deactivate compdef eEnergyOGCObjMgr_enu
+deactivate compdef ePharmaMObjMgr_enu
+deactivate compdef ePharmaObjMgr_enu
+deactivate compdef eProfessionalPharmaObjMgr_enu
+deactivate compdef eRetailObjMgr_enu
+deactivate compdef ERMCompPlanSvc
+deactivate compdef eSalesObjMgr_enu
+deactivate compdef eSalesCMEObjMgr_enu
+deactivate compdef eServiceObjMgr_enu
+deactivate compdef eSitesClinicalObjMgr_enu
+deactivate compdef eTrainingObjMgr_enu
+deactivate compdef FSCyccnt
+deactivate compdef FSInvTxn
+deactivate compdef SFSObjMgr_enu
+deactivate compdef FSRepl
+deactivate compdef FINSeCustomerObjMgr_enu
+deactivate compdef FINSConsoleObjMgr_enu
+deactivate compdef FINSeBankingObjMgr_enu
+deactivate compdef FINSeBrokerageObjMgr_enu
+deactivate compdef FINSeChannelObjMgr_enu
+deactivate compdef FINSeEnrollmentObjMgr_enu
+deactivate compdef FINSeSalesObjMgr_enu
+deactivate compdef FINSObjMgr_enu
+deactivate compdef FcstSvcMgr
+deactivate compdef HAUpgradeMqRcvr
+deactivate compdef CGCEObjMgr_enu
+deactivate compdef ePharmaCEObjMgr_enu
+deactivate compdef MedicalCEObjMgr_enu
+deactivate compdef SalesCEObjMgr_enu
+deactivate compdef SIASalesCEObjMgr_enu
+deactivate compdef SIAServiceCEObjMgr_enu
+deactivate compdef HospitalityQuoteGen
+deactivate compdef htimObjMgr_enu
+deactivate compdef htimprmObjMgr_enu
+deactivate compdef ICMCalcEngine
+deactivate compdef ICMCalcImport
+deactivate compdef ICMContainerCalc
+deactivate compdef ICMContainerRetro
+deactivate compdef ICMOrderImport
+deactivate compdef ICMQuotaImport
+deactivate compdef ICompCreditAsgnDB
+deactivate compdef ICompCreditAsgn
+deactivate compdef ICompCreditUpMgr
+deactivate compdef ICompMgr
+deactivate compdef ICompRuleMgrSvc
+deactivate compdef INSeServiceObjMgr_enu
+deactivate compdef JMSReceiver
+deactivate compdef ListImportSvcMgr
+deactivate compdef eloyaltyObjMgr_enu
+deactivate compdef loyaltyObjMgr_enu
+deactivate compdef loyaltyscwObjMgr_enu
+deactivate compdef SMObjMgr_enu
+deactivate compdef MqSeriesAMIRcvr
+deactivate compdef MqSeriesSrvRcvr
+deactivate compdef MSMQRcvr
+deactivate compdef Optimizer
+deactivate compdef ORCLRcvr
+deactivate compdef PageMgr
+deactivate compdef PDbXtract
+deactivate compdef PManagerObjMgr_enu
+deactivate compdef PIMSIDispatcher
+deactivate compdef PIMSIEng
+deactivate compdef FSPrevMnt
+deactivate compdef PSeServiceObjMgr_enu
+deactivate compdef PSCcObjMgr_enu
+deactivate compdef PSScwObjMgr_enu
+deactivate compdef RTSExtractor
+deactivate compdef RTSSender
+deactivate compdef RTSQApplier
+deactivate compdef RTSDispatcher
+deactivate compdef RepAgent
+deactivate compdef RTIBatch
+deactivate compdef SalesHierSvcMgr
+deactivate compdef SalesmObjMgr_enu
+deactivate compdef SSEObjMgr_enu
+deactivate compdef BAPIRcvr
+deactivate compdef SAPIdocAMIMqRcvr
+deactivate compdef SAPIdocMqRcvr
+deactivate compdef SAPProcessTrans
+deactivate compdef SAPSendTrans
+deactivate compdef SearchDataProcessor
+deactivate compdef SearchIncrementalIndexProcessor
+deactivate compdef SServiceObjMgr_enu
+deactivate compdef ServicemObjMgr_enu
+deactivate compdef FSFulfill
+deactivate compdef FSLocate
+deactivate compdef sismeObjMgr_enu
+deactivate compdef WirelesseChannelObjMgr_enu
+deactivate compdef SMCObjMgr_enu
+deactivate compdef PartnerPortalObjMgr_enu
+deactivate compdef WirelessSalesObjMgr_enu
+deactivate compdef WirelesseServiceObjMgr_enu
+deactivate compdef ServiceCEObjMgr_enu
+deactivate compdef WirelessServiceObjMgr_enu
+deactivate compdef S2SMqRcvr
+deactivate compdef S2SMSMQRcvr
+deactivate compdef SmartAnswer
+deactivate compdef SMQReceiver
+deactivate compdef UCMBatchProcess
+deactivate compdef UCMBatchPubSub
+deactivate compdef UCMObjMgr_enu
+deactivate compdef UpgKitBldr
+deactivate compdef XMLPReportServer
+deactivate compdef eChannelCMEObjMgr_enu
+deactivate compdef eProdCfgObjMgr_enu
+deactivate compdef eCommunicationsObjMgr_enu
+deactivate compdef WorkActn
+deactivate compdef GenTrig
+deactivate compdef WorkMon
+deactivate compdef WfRecvMgr

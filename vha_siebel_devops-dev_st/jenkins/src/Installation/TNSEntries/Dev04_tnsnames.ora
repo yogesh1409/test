@@ -1,0 +1,8 @@
+SBLDEV04 =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = vvsl60180.vodafone.com.au)(PORT = 2521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = SEBL_DEV4.vodafone.com.au)
+    )
+  )

@@ -1,0 +1,16 @@
+# Copyright (c) 2005, 2009 Oracle Corporation.  All rights reserved.
+ORACLE_HOME=/vha/app/oracle/product/12.2.0/client_1
+inst_group=sblgrp
+ORACLE_HOME_VERSION=12.2.0.1.0
+INVENTORY_LOCATION=/vha/app/oracle/oraInventory
+CRS_HOME=false
+HOME_TYPE=CLIENT
+silent=true
+MinimumSupportedVersion=11.2.0.1.0
+LOCAL_NODE=vvsl40068
+local=false
+inventory_loc=/vha/app/oracle/oraInventory
+ObaseCleanupPtrLoc=/tmp/deinstall2019-03-17_02-13-55AM/utl/orabase_cleanup.lst
+LOGDIR=/vha/app/shared/sbl/scripts/Log/Ora_Client_UnInstall
+ORACLE_HOME=/vha/app/oracle/product/12.2.0/client_1
+ORACLE_HOME_VERSION_VALID=true

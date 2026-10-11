@@ -1,0 +1,16 @@
+SEBL_PRD =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = siebelcrm-sebldb-app)(PORT = 2521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = sebl_prd_sblapp.vodafone.com.au)
+    )
+  )
+SBLPRD_DSN =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = siebelcrm-sebldb-app)(PORT = 2521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = sebl_prd_sblapp.vodafone.com.au)
+    )
+  )
